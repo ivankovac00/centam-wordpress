@@ -1,0 +1,7 @@
+# WordPress.com GitHub Deployments copies the repo root into /wp-content.
+# Only themes/ and plugins/ belong there; everything else stays in GitHub.
+/README.md
+/docs
+/.github
+/.gitattributes
+/.deployignore
