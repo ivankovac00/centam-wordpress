@@ -34,11 +34,11 @@ centam_home_intro( $t['eyebrow'], $t['heading'], $t['text'] );
 ?>
 
 <!-- wp:query {"queryId":1,"query":{"perPage":99,"pages":0,"offset":0,"postType":"centam_project","order":"desc","orderBy":"date","author":"","search":"","exclude":[],"sticky":"","inherit":false},"align":"wide","className":"centam-home-query centam-home-query--projects"} -->
-<div class="wp-block-query alignwide centam-home-query centam-home-query--projects"><!-- wp:post-template {"className":"centam-home-grid","layout":{"type":"grid","columnCount":3}} -->
-<!-- wp:group {"className":"is-style-centam-card centam-home-post-card","layout":{"type":"default"}} -->
-<div class="wp-block-group is-style-centam-card centam-home-post-card"><!-- wp:post-featured-image {"isLink":true,"height":"180px","className":"centam-home-card-media"} /-->
+<div class="wp-block-query alignwide centam-home-query centam-home-query--projects"><!-- wp:post-template {"className":"is-style-centam-card-grid","layout":{"type":"grid","columnCount":3}} -->
+<!-- wp:group {"className":"is-style-centam-card centam-card--project","layout":{"type":"default"}} -->
+<div class="wp-block-group is-style-centam-card centam-card--project"><!-- wp:post-featured-image {"isLink":true,"className":"centam-card__media"} /-->
 
-<!-- wp:post-terms {"term":"centam_project_category","className":"centam-home-category-tag"} /-->
+<!-- wp:post-terms {"term":"centam_project_category","className":"centam-card__tag"} /-->
 
 <!-- wp:post-title {"level":3} /-->
 

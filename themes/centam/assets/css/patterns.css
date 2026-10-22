@@ -1,70 +1,44 @@
 /* =============================================================
    CENTAM: home section patterns
    Layout details of the nine home sections (patterns/home-*.php)
-   that block settings cannot express: breakpoints, the pillars
-   dividers, card media, the team grid and the contact column.
-   Colours, fonts, section backgrounds, cards, eyebrows, the hexagon
-   photo and partner logo looks come from theme.json and the theme's
-   block styles. Values mirror styles.css of the static site.
+   that block settings and the theme's block styles in style.css
+   do not cover: breakpoints, pillar dividers, the About layout,
+   the team grid and the contact column. Values mirror styles.css
+   of the static site.
    ============================================================= */
 
 /* -------------------------------------------------------------
-   Shared: section intros and grids
+   Shared grids: 3 columns, 2 below 992px, 1 below 600px
    ------------------------------------------------------------- */
-.centam-home-intro {
-	text-align: center;
-	margin-bottom: 64px;
-}
-.centam-home-intro--left {
-	text-align: left;
-	max-width: 700px;
-}
-.centam-home-intro > * {
-	margin-top: 0;
-}
-
-/* 3 columns, 2 below 992px, 1 below 600px (services, projects, news). */
-.wp-block-group.centam-home-grid,
-.wp-block-post-template.centam-home-grid {
+.wp-block-group.centam-home-grid {
 	gap: 24px;
 }
 @media (max-width: 992px) {
-	.wp-block-group.centam-home-grid,
-	.wp-block-post-template.centam-home-grid {
+	.wp-block-group.centam-home-grid {
 		grid-template-columns: repeat(2, minmax(0, 1fr));
 	}
 }
 @media (max-width: 600px) {
-	.wp-block-group.centam-home-grid,
-	.wp-block-post-template.centam-home-grid {
+	.wp-block-group.centam-home-grid {
 		grid-template-columns: minmax(0, 1fr);
 	}
 }
 
-/* -------------------------------------------------------------
-   Hero
-   ------------------------------------------------------------- */
-.centam-home-hero .wp-block-cover__inner-container {
-	padding: 0 var(--wp--custom--gutter--mobile, 20px);
-}
-.centam-home-hero h1 {
-	margin-bottom: 0.4em;
-}
-.centam-home-hero .centam-home-hero-text {
-	font-size: clamp(16px, 1.6vw, 20px);
+/* Contact intro: left-aligned, same width and spacing as centred intros */
+.centam-home-intro--left {
 	max-width: 700px;
-	margin-bottom: 2.5em;
+	margin-bottom: 64px;
 }
-.centam-home-hero .centam-home-hero-actions {
-	gap: 16px;
+.centam-home-intro--left > * {
+	margin-block-start: 0;
 }
+
+/* -------------------------------------------------------------
+   Hero: the block's inline 100vh would beat the theme's 88vh on phones
+   ------------------------------------------------------------- */
 @media (max-width: 768px) {
 	.centam-home-hero.wp-block-cover {
-		min-height: 88vh !important; /* overrides the block's inline 100vh on phones, as before */
-	}
-	.centam-home-hero .centam-home-hero-text {
-		font-size: 16px;
-		margin-bottom: 1.8em;
+		min-height: 88vh !important;
 	}
 }
 
@@ -105,71 +79,18 @@
 }
 
 /* -------------------------------------------------------------
-   Project and news cards (Query Loops)
+   News preview: the home page crops card images to 240px, the
+   news archive shows them uncropped
    ------------------------------------------------------------- */
-.centam-home-post-card .centam-home-card-media {
-	margin: -36px -32px 24px;
-	border-radius: 6px 6px 0 0;
+.centam-home-news .centam-card__media {
+	height: 240px;
 	overflow: hidden;
 }
-.centam-home-post-card .centam-home-card-media img {
-	border-radius: inherit;
+.centam-home-news .centam-card__media img {
+	width: 100%;
+	height: auto;
+	transform: translateY(7%);
 }
-.centam-home-query--news .centam-home-card-media {
-	margin-bottom: 20px;
-}
-.centam-home-post-card .wp-block-post-title {
-	margin-bottom: 0.6em;
-}
-.centam-home-post-card .wp-block-post-title a {
-	color: inherit;
-	text-decoration: none;
-}
-
-/* Category tag */
-.centam-home-category-tag {
-	margin-bottom: 16px;
-}
-.centam-home-category-tag a {
-	display: inline-block;
-	font-family: var(--wp--preset--font-family--barlow-condensed, "Barlow Condensed", sans-serif);
-	font-size: 11px;
-	letter-spacing: 0.2em;
-	text-transform: uppercase;
-	color: var(--wp--preset--color--light-green);
-	padding: 4px 10px;
-	border: 1px solid var(--wp--preset--color--light-green);
-	border-radius: 2px;
-	text-decoration: none;
-}
-
-/* Date · Read More */
-.centam-home-card-footer {
-	gap: 0.35em;
-	align-items: baseline;
-}
-.centam-home-card-footer > * {
-	margin: 0;
-}
-.centam-home-card-date {
-	font-weight: 300;
-	font-size: 13px;
-	letter-spacing: 0.04em;
-	color: var(--wp--preset--color--mint);
-}
-
-/* The whole news card opens the article; the Read More link stays the
-   keyboard-focusable target and stretches over the card. */
-.centam-home-post-card--linked {
-	position: relative;
-	cursor: pointer;
-}
-.centam-home-post-card--linked .wp-block-read-more::after {
-	content: "";
-	position: absolute;
-	inset: 0;
-}
-
 .centam-home-news-cta {
 	margin-top: 56px;
 }
@@ -198,7 +119,7 @@
 }
 .centam-home-about .centam-home-about-image img {
 	width: 100%;
-	border-radius: 6px;
+	border-radius: var(--wp--custom--radius--card);
 }
 
 /* Values (About) and project facts */
@@ -241,11 +162,7 @@
 .centam-home-team-member {
 	text-align: center;
 }
-.centam-home-team-member .wp-block-image {
-	margin: 0 auto 24px;
-	transition: transform 300ms ease;
-}
-.centam-home-team-member:hover .wp-block-image {
+.centam-home-team-member:hover .wp-block-image.is-style-centam-hexagon {
 	transform: scale(1.03);
 }
 .centam-home-team-member h3 {
@@ -277,7 +194,6 @@
 .centam-home-partners-row > .wp-block-image {
 	flex: 1 1 0;
 	min-width: 0;
-	margin: 0;
 }
 @media (max-width: 900px) {
 	.wp-block-group.centam-home-partners-row {

@@ -29,41 +29,29 @@ if ( ! function_exists( 'centam_home_intro' ) ) {
 	/**
 	 * Section intro: eyebrow, heading and optional paragraph.
 	 *
+	 * Centered intros use the theme's .centam-section-intro (700px, centred);
+	 * the left-aligned variant is only used by Contact.
+	 *
 	 * @param string $eyebrow Eyebrow label.
 	 * @param string $heading Section heading (h2).
 	 * @param string $text    Intro paragraph, optional.
 	 * @param string $align   'center' (most sections) or 'left' (Contact).
 	 */
 	function centam_home_intro( $eyebrow, $heading, $text = '', $align = 'center' ) {
-		$centered    = 'center' === $align;
-		$group_class = $centered ? 'centam-home-intro' : 'centam-home-intro centam-home-intro--left';
-		$group_attrs = array(
-			'className' => $group_class,
-			'layout'    => $centered
-				? array( 'type' => 'constrained', 'contentSize' => '700px' )
-				: array( 'type' => 'default' ),
-		);
-		$text_attrs  = $centered ? '{"align":"center"} ' : '';
-		$text_class  = $centered ? ' class="has-text-align-center"' : '';
-		$eyebrow_attrs = $centered
-			? '{"align":"center","className":"is-style-centam-eyebrow"}'
-			: '{"className":"is-style-centam-eyebrow"}';
-		$eyebrow_class = $centered ? 'has-text-align-center is-style-centam-eyebrow' : 'is-style-centam-eyebrow';
-		$heading_attrs = $centered ? ' {"textAlign":"center"}' : '';
-		$heading_class = $centered ? 'wp-block-heading has-text-align-center' : 'wp-block-heading';
+		$class = 'center' === $align ? 'centam-section-intro' : 'centam-home-intro--left';
 		?>
-<!-- wp:group <?php echo wp_json_encode( $group_attrs ); ?> -->
-<div class="wp-block-group <?php echo esc_attr( $group_class ); ?>"><!-- wp:paragraph <?php echo $eyebrow_attrs; // phpcs:ignore WordPress.Security.EscapeOutput ?> -->
-<p class="<?php echo esc_attr( $eyebrow_class ); ?>"><?php echo esc_html( $eyebrow ); ?></p>
+<!-- wp:group {"className":"<?php echo esc_attr( $class ); ?>","layout":{"type":"default"}} -->
+<div class="wp-block-group <?php echo esc_attr( $class ); ?>"><!-- wp:paragraph {"className":"is-style-centam-eyebrow"} -->
+<p class="is-style-centam-eyebrow"><?php echo esc_html( $eyebrow ); ?></p>
 <!-- /wp:paragraph -->
 
-<!-- wp:heading<?php echo $heading_attrs; // phpcs:ignore WordPress.Security.EscapeOutput ?> -->
-<h2 class="<?php echo esc_attr( $heading_class ); ?>"><?php echo esc_html( $heading ); ?></h2>
+<!-- wp:heading -->
+<h2 class="wp-block-heading"><?php echo esc_html( $heading ); ?></h2>
 <!-- /wp:heading -->
 		<?php if ( $text ) : ?>
 
-<!-- wp:paragraph <?php echo $text_attrs; // phpcs:ignore WordPress.Security.EscapeOutput ?>-->
-<p<?php echo $text_class; // phpcs:ignore WordPress.Security.EscapeOutput ?>><?php echo esc_html( $text ); ?></p>
+<!-- wp:paragraph -->
+<p><?php echo esc_html( $text ); ?></p>
 <!-- /wp:paragraph -->
 		<?php endif; ?></div>
 <!-- /wp:group -->

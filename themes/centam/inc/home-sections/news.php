@@ -2,9 +2,8 @@
 /**
  * Home section: News (intro + Query Loop of the latest 3 posts + "Read All News" button).
  *
- * Polylang limits the list to the page's language. The whole card is
- * clickable through its Read More link (see patterns.css), while the link
- * itself stays the keyboard-accessible target.
+ * Polylang limits the list to the page's language. The theme script
+ * (assets/js/centam.js) makes the whole card clickable.
  *
  * Expects $centam_lang ('en' or 'nl') from the including pattern.
  *
@@ -36,21 +35,21 @@ centam_home_intro( $t['eyebrow'], $t['heading'] );
 ?>
 
 <!-- wp:query {"queryId":2,"query":{"perPage":3,"pages":0,"offset":0,"postType":"post","order":"desc","orderBy":"date","author":"","search":"","exclude":[],"sticky":"","inherit":false},"align":"wide","className":"centam-home-query centam-home-query--news"} -->
-<div class="wp-block-query alignwide centam-home-query centam-home-query--news"><!-- wp:post-template {"className":"centam-home-grid","layout":{"type":"grid","columnCount":3}} -->
-<!-- wp:group {"className":"is-style-centam-card centam-home-post-card centam-home-post-card--linked","layout":{"type":"default"}} -->
-<div class="wp-block-group is-style-centam-card centam-home-post-card centam-home-post-card--linked"><!-- wp:post-featured-image {"height":"240px","className":"centam-home-card-media"} /-->
+<div class="wp-block-query alignwide centam-home-query centam-home-query--news"><!-- wp:post-template {"className":"is-style-centam-card-grid","layout":{"type":"grid","columnCount":3}} -->
+<!-- wp:group {"className":"is-style-centam-card centam-card--news","layout":{"type":"default"}} -->
+<div class="wp-block-group is-style-centam-card centam-card--news"><!-- wp:post-featured-image {"className":"centam-card__media"} /-->
 
-<!-- wp:post-terms {"term":"category","className":"centam-home-category-tag"} /-->
+<!-- wp:post-terms {"term":"category","className":"centam-card__tag"} /-->
 
 <!-- wp:post-title {"level":3} /-->
 
 <!-- wp:post-excerpt {"excerptLength":40} /-->
 
-<!-- wp:group {"className":"centam-home-card-footer","layout":{"type":"flex","flexWrap":"wrap"}} -->
-<div class="wp-block-group centam-home-card-footer"><!-- wp:post-date {"className":"centam-home-card-date"} /-->
+<!-- wp:group {"className":"centam-card__footer","layout":{"type":"flex","flexWrap":"wrap"}} -->
+<div class="wp-block-group centam-card__footer"><!-- wp:post-date /-->
 
-<!-- wp:paragraph {"className":"centam-home-card-sep"} -->
-<p class="centam-home-card-sep">·</p>
+<!-- wp:paragraph {"className":"centam-card__dot"} -->
+<p class="centam-card__dot">·</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:read-more <?php echo wp_json_encode( array( 'content' => $t['read_more'] ) ); ?> /--></div>
