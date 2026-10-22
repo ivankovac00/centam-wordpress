@@ -26,11 +26,14 @@
 
 /* Contact intro: left-aligned, same width and spacing as centred intros */
 .centam-home-intro--left {
-	max-width: 700px;
 	margin-bottom: 64px;
 }
 .centam-home-intro--left > * {
+	max-width: 700px;
 	margin-block-start: 0;
+}
+.centam-home-intro--left h2 {
+	margin-bottom: 0.6em;
 }
 
 /* -------------------------------------------------------------
@@ -83,10 +86,13 @@
    news archive shows them uncropped
    ------------------------------------------------------------- */
 .centam-home-news .centam-card__media {
+	display: flex;
+	align-items: center;
 	height: 240px;
 	overflow: hidden;
 }
 .centam-home-news .centam-card__media img {
+	flex-shrink: 0;
 	width: 100%;
 	height: auto;
 	transform: translateY(7%);
@@ -103,6 +109,9 @@
 	text-align: justify;
 	text-justify: inter-word;
 }
+.centam-home-about-text h2 {
+	margin-bottom: 0.6em;
+}
 .centam-home-about-text .is-style-centam-eyebrow {
 	display: block;
 	text-align: center;
@@ -110,15 +119,24 @@
 .centam-home-about .centam-home-about-subheading {
 	font-size: 18px;
 	margin-top: 48px;
+	margin-bottom: 0.6em;
 	color: var(--wp--preset--color--light-green);
 	letter-spacing: 0.15em;
 }
+
+/* Image sits on a soft mint panel, half the text width, as before */
 .centam-home-about .centam-home-about-image {
 	width: 50%;
+	max-width: calc(var(--wp--style--global--content-size, 1184px) / 2);
 	margin-top: 32px;
+	background: linear-gradient(135deg, var(--wp--preset--color--mint), rgba(169, 183, 180, 0.4));
+	border: 1px solid rgba(21, 30, 34, 0.1);
+	border-radius: var(--wp--custom--radius--card);
+	overflow: hidden;
 }
 .centam-home-about .centam-home-about-image img {
 	width: 100%;
+	display: block;
 	border-radius: var(--wp--custom--radius--card);
 }
 

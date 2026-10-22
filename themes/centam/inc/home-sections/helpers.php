@@ -38,10 +38,17 @@ if ( ! function_exists( 'centam_home_intro' ) ) {
 	 * @param string $align   'center' (most sections) or 'left' (Contact).
 	 */
 	function centam_home_intro( $eyebrow, $heading, $text = '', $align = 'center' ) {
-		$class = 'center' === $align ? 'centam-section-intro' : 'centam-home-intro--left';
+		if ( 'center' === $align ) {
+			$attrs   = '{"className":"centam-section-intro","layout":{"type":"default"}}';
+			$classes = 'wp-block-group centam-section-intro';
+		} else {
+			// Wide so it lines up with the left edge of the content below it.
+			$attrs   = '{"align":"wide","className":"centam-home-intro--left","layout":{"type":"default"}}';
+			$classes = 'wp-block-group alignwide centam-home-intro--left';
+		}
 		?>
-<!-- wp:group {"className":"<?php echo esc_attr( $class ); ?>","layout":{"type":"default"}} -->
-<div class="wp-block-group <?php echo esc_attr( $class ); ?>"><!-- wp:paragraph {"className":"is-style-centam-eyebrow"} -->
+<!-- wp:group <?php echo $attrs; // phpcs:ignore WordPress.Security.EscapeOutput ?> -->
+<div class="<?php echo esc_attr( $classes ); ?>"><!-- wp:paragraph {"className":"is-style-centam-eyebrow"} -->
 <p class="is-style-centam-eyebrow"><?php echo esc_html( $eyebrow ); ?></p>
 <!-- /wp:paragraph -->
 

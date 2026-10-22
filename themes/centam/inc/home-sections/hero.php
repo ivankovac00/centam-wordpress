@@ -26,7 +26,7 @@ $copy = array(
 $t = $copy[ isset( $centam_lang ) && 'nl' === $centam_lang ? 'nl' : 'en' ];
 ?>
 <!-- wp:cover {"overlayColor":"dark-green","isUserOverlayColor":true,"minHeight":100,"minHeightUnit":"vh","contentPosition":"center center","isDark":true,"anchor":"hero","align":"full","className":"is-style-centam-hero centam-home-hero","lock":{"move":true,"remove":true},"layout":{"type":"constrained","contentSize":"900px"}} -->
-<div id="hero" class="wp-block-cover alignfull is-dark is-style-centam-hero centam-home-hero" style="min-height:100vh"><span aria-hidden="true" class="wp-block-cover__background has-dark-green-background-color has-background-dim-100 has-background-dim"></span><div class="wp-block-cover__inner-container"><!-- wp:paragraph {"className":"is-style-centam-eyebrow"} -->
+<div id="hero" class="wp-block-cover alignfull is-style-centam-hero centam-home-hero" style="min-height:100vh"><span aria-hidden="true" class="wp-block-cover__background has-dark-green-background-color has-background-dim-100 has-background-dim"></span><div class="wp-block-cover__inner-container"><!-- wp:paragraph {"className":"is-style-centam-eyebrow"} -->
 <p class="is-style-centam-eyebrow"><?php echo esc_html( $t['eyebrow'] ); ?></p>
 <!-- /wp:paragraph -->
 
