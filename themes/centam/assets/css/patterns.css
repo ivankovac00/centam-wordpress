@@ -1,0 +1,326 @@
+/* =============================================================
+   CENTAM: home section patterns
+   Layout details of the nine home sections (patterns/home-*.php)
+   that block settings cannot express: breakpoints, the pillars
+   dividers, card media, the team grid and the contact column.
+   Colours, fonts, section backgrounds, cards, eyebrows, the hexagon
+   photo and partner logo looks come from theme.json and the theme's
+   block styles. Values mirror styles.css of the static site.
+   ============================================================= */
+
+/* -------------------------------------------------------------
+   Shared: section intros and grids
+   ------------------------------------------------------------- */
+.centam-home-intro {
+	text-align: center;
+	margin-bottom: 64px;
+}
+.centam-home-intro--left {
+	text-align: left;
+	max-width: 700px;
+}
+.centam-home-intro > * {
+	margin-top: 0;
+}
+
+/* 3 columns, 2 below 992px, 1 below 600px (services, projects, news). */
+.wp-block-group.centam-home-grid,
+.wp-block-post-template.centam-home-grid {
+	gap: 24px;
+}
+@media (max-width: 992px) {
+	.wp-block-group.centam-home-grid,
+	.wp-block-post-template.centam-home-grid {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+	}
+}
+@media (max-width: 600px) {
+	.wp-block-group.centam-home-grid,
+	.wp-block-post-template.centam-home-grid {
+		grid-template-columns: minmax(0, 1fr);
+	}
+}
+
+/* -------------------------------------------------------------
+   Hero
+   ------------------------------------------------------------- */
+.centam-home-hero .wp-block-cover__inner-container {
+	padding: 0 var(--wp--custom--gutter--mobile, 20px);
+}
+.centam-home-hero h1 {
+	margin-bottom: 0.4em;
+}
+.centam-home-hero .centam-home-hero-text {
+	font-size: clamp(16px, 1.6vw, 20px);
+	max-width: 700px;
+	margin-bottom: 2.5em;
+}
+.centam-home-hero .centam-home-hero-actions {
+	gap: 16px;
+}
+@media (max-width: 768px) {
+	.centam-home-hero.wp-block-cover {
+		min-height: 88vh !important; /* overrides the block's inline 100vh on phones, as before */
+	}
+	.centam-home-hero .centam-home-hero-text {
+		font-size: 16px;
+		margin-bottom: 1.8em;
+	}
+}
+
+/* -------------------------------------------------------------
+   Pillars strip
+   ------------------------------------------------------------- */
+.centam-home-pillars {
+	border-top: 1px solid rgba(169, 183, 180, 0.15);
+	border-bottom: 1px solid rgba(169, 183, 180, 0.15);
+}
+.centam-home-pillars .centam-home-pillars-row {
+	gap: 0;
+	margin: 0;
+}
+.centam-home-pillars .wp-block-column {
+	padding: 36px 24px;
+	border-right: 1px solid rgba(169, 183, 180, 0.1);
+}
+.centam-home-pillars .wp-block-column:last-child {
+	border-right: none;
+}
+.centam-home-pillars h4 {
+	font-size: 18px;
+	font-weight: 600;
+	letter-spacing: 0.15em;
+	text-transform: uppercase;
+	color: var(--wp--preset--color--cream);
+	margin: 0;
+}
+@media (max-width: 781px) {
+	.centam-home-pillars .wp-block-column {
+		border-right: none;
+		border-bottom: 1px solid rgba(169, 183, 180, 0.1);
+	}
+	.centam-home-pillars .wp-block-column:last-child {
+		border-bottom: none;
+	}
+}
+
+/* -------------------------------------------------------------
+   Project and news cards (Query Loops)
+   ------------------------------------------------------------- */
+.centam-home-post-card .centam-home-card-media {
+	margin: -36px -32px 24px;
+	border-radius: 6px 6px 0 0;
+	overflow: hidden;
+}
+.centam-home-post-card .centam-home-card-media img {
+	border-radius: inherit;
+}
+.centam-home-query--news .centam-home-card-media {
+	margin-bottom: 20px;
+}
+.centam-home-post-card .wp-block-post-title {
+	margin-bottom: 0.6em;
+}
+.centam-home-post-card .wp-block-post-title a {
+	color: inherit;
+	text-decoration: none;
+}
+
+/* Category tag */
+.centam-home-category-tag {
+	margin-bottom: 16px;
+}
+.centam-home-category-tag a {
+	display: inline-block;
+	font-family: var(--wp--preset--font-family--barlow-condensed, "Barlow Condensed", sans-serif);
+	font-size: 11px;
+	letter-spacing: 0.2em;
+	text-transform: uppercase;
+	color: var(--wp--preset--color--light-green);
+	padding: 4px 10px;
+	border: 1px solid var(--wp--preset--color--light-green);
+	border-radius: 2px;
+	text-decoration: none;
+}
+
+/* Date · Read More */
+.centam-home-card-footer {
+	gap: 0.35em;
+	align-items: baseline;
+}
+.centam-home-card-footer > * {
+	margin: 0;
+}
+.centam-home-card-date {
+	font-weight: 300;
+	font-size: 13px;
+	letter-spacing: 0.04em;
+	color: var(--wp--preset--color--mint);
+}
+
+/* The whole news card opens the article; the Read More link stays the
+   keyboard-focusable target and stretches over the card. */
+.centam-home-post-card--linked {
+	position: relative;
+	cursor: pointer;
+}
+.centam-home-post-card--linked .wp-block-read-more::after {
+	content: "";
+	position: absolute;
+	inset: 0;
+}
+
+.centam-home-news-cta {
+	margin-top: 56px;
+}
+
+/* -------------------------------------------------------------
+   About
+   ------------------------------------------------------------- */
+.centam-home-about-text p,
+.centam-home-about-text h3 {
+	text-align: justify;
+	text-justify: inter-word;
+}
+.centam-home-about-text .is-style-centam-eyebrow {
+	display: block;
+	text-align: center;
+}
+.centam-home-about .centam-home-about-subheading {
+	font-size: 18px;
+	margin-top: 48px;
+	color: var(--wp--preset--color--light-green);
+	letter-spacing: 0.15em;
+}
+.centam-home-about .centam-home-about-image {
+	width: 50%;
+	margin-top: 32px;
+}
+.centam-home-about .centam-home-about-image img {
+	width: 100%;
+	border-radius: 6px;
+}
+
+/* Values (About) and project facts */
+.wp-block-group.centam-home-values {
+	gap: 32px;
+	margin-top: 48px;
+}
+.centam-home-value h4 {
+	font-size: 14px;
+	color: var(--wp--preset--color--light-green);
+	margin-bottom: 8px;
+	letter-spacing: 0.12em;
+}
+.centam-home-value p {
+	font-size: 15px;
+}
+@media (max-width: 768px) {
+	.wp-block-group.centam-home-values {
+		grid-template-columns: minmax(0, 1fr);
+		gap: 24px;
+	}
+}
+
+/* -------------------------------------------------------------
+   Team
+   ------------------------------------------------------------- */
+.wp-block-group.centam-home-team-grid {
+	gap: 40px 32px;
+}
+@media (max-width: 1024px) {
+	.wp-block-group.centam-home-team-grid {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+	}
+}
+@media (max-width: 600px) {
+	.wp-block-group.centam-home-team-grid {
+		grid-template-columns: minmax(0, 1fr);
+	}
+}
+.centam-home-team-member {
+	text-align: center;
+}
+.centam-home-team-member .wp-block-image {
+	margin: 0 auto 24px;
+	transition: transform 300ms ease;
+}
+.centam-home-team-member:hover .wp-block-image {
+	transform: scale(1.03);
+}
+.centam-home-team-member h3 {
+	font-size: 20px;
+	margin: 0 0 4px;
+}
+.centam-home-team-member h3 a {
+	color: var(--wp--preset--color--cream);
+	text-decoration: none;
+}
+.centam-home-team-member h3 a:hover {
+	color: var(--wp--preset--color--mint);
+}
+.centam-home-team-member .centam-home-team-role {
+	font-size: 13px;
+	letter-spacing: 0.15em;
+	text-transform: uppercase;
+	color: var(--wp--preset--color--mint);
+	margin: 0 0 12px;
+}
+
+/* -------------------------------------------------------------
+   Partners
+   ------------------------------------------------------------- */
+.centam-home-partners-row {
+	gap: 24px;
+	align-items: center;
+}
+.centam-home-partners-row > .wp-block-image {
+	flex: 1 1 0;
+	min-width: 0;
+	margin: 0;
+}
+@media (max-width: 900px) {
+	.wp-block-group.centam-home-partners-row {
+		flex-wrap: wrap;
+		justify-content: center;
+		gap: 20px;
+	}
+}
+@media (max-width: 600px) {
+	.wp-block-group.centam-home-partners-row {
+		flex-direction: column;
+		gap: 16px;
+	}
+	.centam-home-partners-row > .wp-block-image {
+		width: 100%;
+	}
+}
+
+/* -------------------------------------------------------------
+   Contact
+   ------------------------------------------------------------- */
+.wp-block-columns.centam-home-contact-grid {
+	gap: 80px;
+	align-items: flex-start;
+}
+@media (max-width: 900px) {
+	.wp-block-columns.centam-home-contact-grid {
+		flex-wrap: wrap !important; /* core keeps columns side by side until 782px */
+		gap: 48px;
+	}
+	.wp-block-columns.centam-home-contact-grid > .wp-block-column {
+		flex-basis: 100% !important;
+	}
+}
+.centam-home-contact .centam-home-contact-label {
+	font-size: 13px;
+	color: var(--wp--preset--color--mint);
+	letter-spacing: 0.2em;
+	margin: 0 0 8px;
+}
+.centam-home-contact .centam-home-contact-detail {
+	margin-bottom: 32px;
+}
+.centam-home-contact .centam-home-contact-link a {
+	word-break: break-all;
+}
