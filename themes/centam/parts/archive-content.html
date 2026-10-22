@@ -1,0 +1,57 @@
+<!-- wp:group {"align":"full","className":"is-style-centam-section-light","layout":{"type":"constrained"}} -->
+<div class="wp-block-group alignfull is-style-centam-section-light">
+	<!-- wp:group {"className":"centam-section-intro","layout":{"type":"default"}} -->
+	<div class="wp-block-group centam-section-intro">
+		<!-- wp:separator {"className":"is-style-centam-accent-bar"} -->
+		<hr class="wp-block-separator has-alpha-channel-opacity is-style-centam-accent-bar"/>
+		<!-- /wp:separator -->
+
+		<!-- wp:query-title {"type":"archive","showPrefix":false} /-->
+
+		<!-- wp:term-description /-->
+	</div>
+	<!-- /wp:group -->
+
+	<!-- wp:query {"queryId":3,"query":{"perPage":12,"pages":0,"offset":0,"postType":"post","order":"desc","orderBy":"date","inherit":true}} -->
+	<div class="wp-block-query">
+		<!-- wp:post-template {"className":"is-style-centam-card-grid","layout":{"type":"grid","columnCount":3}} -->
+		<!-- wp:group {"className":"is-style-centam-card centam-card--news","layout":{"type":"default"}} -->
+		<div class="wp-block-group is-style-centam-card centam-card--news">
+			<!-- wp:post-featured-image {"className":"centam-card__media"} /-->
+
+			<!-- wp:post-terms {"term":"category","className":"centam-card__tag"} /-->
+
+			<!-- wp:post-title {"level":3} /-->
+
+			<!-- wp:post-excerpt {"excerptLength":40} /-->
+
+			<!-- wp:group {"className":"centam-card__footer","layout":{"type":"flex","flexWrap":"wrap"}} -->
+			<div class="wp-block-group centam-card__footer">
+				<!-- wp:post-date /-->
+
+				<!-- wp:paragraph {"className":"centam-card__dot"} -->
+				<p class="centam-card__dot">·</p>
+				<!-- /wp:paragraph -->
+
+				<!-- wp:read-more {"content":"Read More →"} /-->
+			</div>
+			<!-- /wp:group -->
+		</div>
+		<!-- /wp:group -->
+		<!-- /wp:post-template -->
+
+		<!-- wp:query-pagination {"layout":{"type":"flex","justifyContent":"center"}} -->
+			<!-- wp:query-pagination-previous /-->
+			<!-- wp:query-pagination-numbers /-->
+			<!-- wp:query-pagination-next /-->
+		<!-- /wp:query-pagination -->
+
+		<!-- wp:query-no-results -->
+			<!-- wp:paragraph -->
+			<p>Nothing here yet.</p>
+			<!-- /wp:paragraph -->
+		<!-- /wp:query-no-results -->
+	</div>
+	<!-- /wp:query -->
+</div>
+<!-- /wp:group -->

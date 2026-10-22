@@ -1,0 +1,55 @@
+<!-- wp:group {"align":"full","className":"is-style-centam-section-darker","anchor":"projects","layout":{"type":"constrained"}} -->
+<div id="projects" class="wp-block-group alignfull is-style-centam-section-darker">
+	<!-- wp:group {"className":"centam-section-intro","layout":{"type":"default"}} -->
+	<div class="wp-block-group centam-section-intro">
+		<!-- wp:separator {"className":"is-style-centam-accent-bar"} -->
+		<hr class="wp-block-separator has-alpha-channel-opacity is-style-centam-accent-bar"/>
+		<!-- /wp:separator -->
+
+		<!-- wp:paragraph {"className":"is-style-centam-eyebrow"} -->
+		<p class="is-style-centam-eyebrow">Selected Work</p>
+		<!-- /wp:paragraph -->
+
+		<!-- wp:heading {"level":2} -->
+		<h2 class="wp-block-heading">Projects &amp; Case Studies</h2>
+		<!-- /wp:heading -->
+
+		<!-- wp:paragraph -->
+		<p>A snapshot of recent engagements across different industrial sectors.</p>
+		<!-- /wp:paragraph -->
+	</div>
+	<!-- /wp:group -->
+
+	<!-- wp:query {"queryId":2,"query":{"perPage":12,"pages":0,"offset":0,"postType":"centam_project","order":"desc","orderBy":"date","inherit":true}} -->
+	<div class="wp-block-query">
+		<!-- wp:post-template {"className":"is-style-centam-card-grid","layout":{"type":"grid","columnCount":3}} -->
+		<!-- wp:group {"className":"is-style-centam-card centam-card--project","layout":{"type":"default"}} -->
+		<div class="wp-block-group is-style-centam-card centam-card--project">
+			<!-- wp:post-featured-image {"className":"centam-card__media"} /-->
+
+			<!-- wp:post-terms {"term":"centam_project_category","className":"centam-card__tag"} /-->
+
+			<!-- wp:post-title {"level":3} /-->
+
+			<!-- wp:post-excerpt {"excerptLength":40} /-->
+
+			<!-- wp:read-more {"content":"Read More →"} /-->
+		</div>
+		<!-- /wp:group -->
+		<!-- /wp:post-template -->
+
+		<!-- wp:query-pagination {"layout":{"type":"flex","justifyContent":"center"}} -->
+			<!-- wp:query-pagination-previous /-->
+			<!-- wp:query-pagination-numbers /-->
+			<!-- wp:query-pagination-next /-->
+		<!-- /wp:query-pagination -->
+
+		<!-- wp:query-no-results -->
+			<!-- wp:paragraph -->
+			<p>No projects yet. Check back soon.</p>
+			<!-- /wp:paragraph -->
+		<!-- /wp:query-no-results -->
+	</div>
+	<!-- /wp:query -->
+</div>
+<!-- /wp:group -->
