@@ -54,6 +54,36 @@ img {
 	height: auto;
 }
 
+.has-text-align-center {
+	text-align: center;
+}
+
+.screen-reader-text {
+	border: 0;
+	clip-path: inset(50%);
+	height: 1px;
+	margin: -1px;
+	overflow: hidden;
+	padding: 0;
+	position: absolute;
+	width: 1px;
+	word-wrap: normal !important;
+}
+
+.screen-reader-text:focus {
+	background-color: var(--wp--preset--color--cream);
+	clip-path: none;
+	color: var(--wp--preset--color--near-black);
+	display: block;
+	font-size: 14px;
+	height: auto;
+	left: 5px;
+	padding: 15px 23px 14px;
+	top: 5px;
+	width: auto;
+	z-index: 100000;
+}
+
 a {
 	transition: color var(--wp--custom--transition--fast);
 }
@@ -231,9 +261,9 @@ small,
 	display: block;
 }
 
-/* The static site's header sits on top of the home hero; on every other
-   page the content starts below it. */
-body:not(.home) .site-main {
+/* Content, the home hero included, starts below the fixed header, as on
+   the static site. */
+.site-main {
 	padding-top: var(--centam-nav-height);
 }
 
@@ -475,6 +505,12 @@ body:not(.home) .site-main {
 	margin-block-start: 0;
 }
 
+/* The static card's last paragraph kept its 1.2em bottom margin, which the
+   flow layout would otherwise remove. */
+.is-style-centam-card.is-style-centam-card > :last-child {
+	margin-block-end: 1.2em;
+}
+
 /* On light sections cards turn white */
 .is-style-centam-section-light .is-style-centam-card {
 	background-color: #ffffff;
@@ -518,7 +554,7 @@ body:not(.home) .site-main {
 }
 
 /* Card image bleeds to the card edges */
-.centam-card__media {
+.is-style-centam-card > .centam-card__media {
 	margin: -36px -32px 20px;
 	border-radius: var(--wp--custom--radius--card) var(--wp--custom--radius--card) 0 0;
 	overflow: hidden;
@@ -646,6 +682,7 @@ body:not(.home) .site-main {
 
 /* Partner logo: centred, contained, slight lift on hover */
 .wp-block-image.is-style-centam-partner-logo {
+	box-sizing: border-box;
 	display: flex;
 	align-items: center;
 	justify-content: center;
