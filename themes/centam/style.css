@@ -1,0 +1,922 @@
+/*
+Theme Name: CENTAM
+Theme URI: https://centam.be/
+Author: CENTAM
+Description: Block theme for centam.be, ported from the static site. Brand colours, fonts and spacing live in theme.json; this file holds the looks theme.json cannot express (block styles, header, footer, cards).
+Version: 0.1.0
+Requires at least: 6.6
+Tested up to: 7.1
+Requires PHP: 7.4
+License: GNU General Public License v2 or later
+License URI: https://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: centam
+*/
+
+/* -------------------------------------------------------------
+   1. TOKENS
+   Colours, fonts and sizes come from theme.json
+   (--wp--preset--*). These are the responsive values theme.json
+   cannot switch at a breakpoint.
+   ------------------------------------------------------------- */
+:root {
+	--centam-gutter: 48px;
+	--centam-section-y: 120px;
+	--centam-nav-height: 92px;
+	--centam-hex-mesh: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='80' height='92' viewBox='0 0 80 92'><path fill='none' stroke='%23A9B7B4' stroke-width='0.6' stroke-opacity='0.1' d='M40 1 78 23 78 69 40 91 2 69 2 23z'/></svg>");
+	--centam-hex-mesh-size: 80px 92px;
+	--centam-line: rgba(169, 183, 180, 0.1);
+}
+
+@media (max-width: 768px) {
+	:root {
+		--centam-gutter: 20px;
+		--centam-section-y: 60px;
+	}
+}
+
+/* -------------------------------------------------------------
+   2. BASE
+   ------------------------------------------------------------- */
+body {
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	overflow-wrap: break-word;
+}
+
+@media (max-width: 768px) {
+	body {
+		font-size: 16px;
+	}
+}
+
+img {
+	max-width: 100%;
+	height: auto;
+}
+
+a {
+	transition: color var(--wp--custom--transition--fast);
+}
+
+:where(.wp-site-blocks) :focus-visible {
+	outline: 2px solid var(--wp--preset--color--mint);
+	outline-offset: 2px;
+}
+
+/* Paragraph and heading rhythm of the static site (margins below, not
+   the block gap above) inside flowing text. */
+.wp-block-post-content p {
+	margin-block: 0 1.2em;
+}
+
+/* Meta / small text */
+small,
+.is-style-centam-meta {
+	font-weight: 300;
+	font-size: var(--wp--preset--font-size--x-small);
+	letter-spacing: 0.04em;
+	color: var(--wp--preset--color--mint);
+}
+
+/* -------------------------------------------------------------
+   3. SECTIONS (Group block styles)
+   ------------------------------------------------------------- */
+.is-style-centam-section-dark,
+.is-style-centam-section-darker,
+.is-style-centam-section-light {
+	position: relative;
+	padding-top: var(--centam-section-y);
+	padding-bottom: var(--centam-section-y);
+	margin-block-start: 0;
+}
+
+.is-style-centam-section-dark {
+	background-color: var(--wp--preset--color--near-black);
+	color: var(--wp--preset--color--cream);
+}
+
+.is-style-centam-section-darker {
+	background-color: var(--wp--preset--color--dark-green);
+	background-image: var(--centam-hex-mesh);
+	background-repeat: repeat;
+	background-size: var(--centam-hex-mesh-size);
+	color: var(--wp--preset--color--cream);
+}
+
+.is-style-centam-section-light {
+	background-color: var(--wp--preset--color--cream);
+	color: var(--wp--preset--color--near-black);
+}
+
+.is-style-centam-section-light :where(h1, h2, h3, h4) {
+	color: var(--wp--preset--color--near-black);
+}
+
+.is-style-centam-section-light a:where(:not(.wp-element-button)) {
+	color: var(--wp--preset--color--dark-green);
+	text-decoration: underline;
+	text-decoration-thickness: 1px;
+	text-underline-offset: 3px;
+}
+
+.is-style-centam-section-light a:where(:not(.wp-element-button)):hover {
+	color: var(--wp--preset--color--light-green);
+}
+
+.is-style-centam-section-light .is-style-centam-eyebrow {
+	color: var(--wp--preset--color--light-green);
+}
+
+/* Sections sit flush against each other (no block gap between them). */
+.site-main > .alignfull,
+.site-main > .wp-block-template-part,
+.site-main > .wp-block-post-content > .alignfull {
+	margin-block-start: 0;
+}
+
+/* Centered section intro (bar, eyebrow, heading, text) */
+.centam-section-intro {
+	text-align: center;
+	max-width: 700px;
+	margin: 0 auto 64px;
+}
+
+.centam-section-intro .wp-block-separator.is-style-centam-accent-bar {
+	margin-left: auto !important;
+	margin-right: auto !important;
+}
+
+.centam-section-intro .is-style-centam-eyebrow {
+	display: block;
+}
+
+.centam-section-intro > * {
+	margin-block-start: 0;
+}
+
+.centam-section-intro :where(h1, h2) {
+	margin-bottom: 0.6em;
+}
+
+.centam-section-intro p:not(.is-style-centam-eyebrow) {
+	margin-bottom: 1.2em;
+}
+
+/* -------------------------------------------------------------
+   4. TEXT STYLES
+   ------------------------------------------------------------- */
+
+/* Eyebrow label above headings (Paragraph style) */
+.is-style-centam-eyebrow {
+	display: inline-block;
+	font-family: var(--wp--preset--font-family--heading);
+	font-weight: 600;
+	font-size: 14px;
+	line-height: 1.7;
+	letter-spacing: 0.25em;
+	text-transform: uppercase;
+	color: var(--wp--preset--color--mint);
+	margin: 0 0 1em;
+}
+
+/* Maroon bar (Separator style). Maroon is for small details only. */
+.wp-block-separator.is-style-centam-accent-bar {
+	width: 36px;
+	height: 3px;
+	border: 0;
+	background-color: var(--wp--preset--color--maroon);
+	color: var(--wp--preset--color--maroon);
+	opacity: 1;
+	margin-top: 0;
+	margin-bottom: 24px;
+	/* Left-aligned even inside constrained layouts, which centre children
+	   with !important. */
+	margin-left: 0 !important;
+	margin-right: auto !important;
+}
+
+.wp-block-separator.is-style-centam-accent-bar.aligncenter,
+.has-text-align-center > .wp-block-separator.is-style-centam-accent-bar {
+	margin-left: auto !important;
+}
+
+/* -------------------------------------------------------------
+   5. HEADER (fixed, near-black)
+   ------------------------------------------------------------- */
+.site-header {
+	position: fixed;
+	top: var(--wp-admin--admin-bar--height, 0px);
+	left: 0;
+	right: 0;
+	z-index: 1000;
+	height: var(--centam-nav-height);
+	display: flex;
+	align-items: center;
+	background-color: var(--wp--preset--color--near-black);
+	border-bottom: 1px solid var(--centam-line);
+}
+
+.centam-header__inner {
+	width: 100%;
+	max-width: 1280px;
+	margin: 0 auto;
+	padding: 0 var(--centam-gutter);
+	gap: 16px;
+}
+
+.centam-header__logo img,
+.site-header .wp-block-site-logo img {
+	height: 58px;
+	width: auto;
+	display: block;
+}
+
+/* The static site's header sits on top of the home hero; on every other
+   page the content starts below it. */
+body:not(.home) .site-main {
+	padding-top: var(--centam-nav-height);
+}
+
+.site-main {
+	margin-block-start: 0;
+}
+
+/* Menu links */
+.centam-primary-nav .wp-block-navigation-item__content {
+	color: var(--wp--preset--color--cream);
+	padding: 8px 14px;
+	transition: color var(--wp--custom--transition--fast);
+}
+
+.centam-primary-nav .wp-block-navigation-item__content:hover,
+.centam-primary-nav .wp-block-navigation-item__content:focus {
+	color: var(--wp--preset--color--mint);
+}
+
+.centam-primary-nav .wp-block-navigation__container {
+	gap: 4px;
+}
+
+/* EN | NL switcher (added by functions.php) */
+.centam-lang {
+	flex-shrink: 0;
+	color: var(--wp--preset--color--mint);
+	font-family: var(--wp--preset--font-family--heading);
+	font-size: 14px;
+	letter-spacing: 0.15em;
+}
+
+.centam-lang__active {
+	color: var(--wp--preset--color--cream);
+}
+
+.centam-lang__divider {
+	opacity: 0.4;
+	margin: 0 8px;
+}
+
+.centam-lang a {
+	color: inherit;
+}
+
+.centam-lang a:hover {
+	color: var(--wp--preset--color--cream);
+}
+
+.centam-lang-mobile {
+	display: none !important;
+}
+
+/* Mobile menu below 980px, like the static site (core switches at 600px). */
+@media (max-width: 979px) {
+	.centam-primary-nav .wp-block-navigation__responsive-container-open:not(.always-shown) {
+		display: flex;
+	}
+
+	.centam-primary-nav .wp-block-navigation__responsive-container:not(.hidden-by-default):not(.is-menu-open) {
+		display: none;
+	}
+
+	.centam-lang {
+		display: none;
+	}
+
+	.centam-lang-mobile {
+		display: flex !important;
+	}
+}
+
+.centam-primary-nav .wp-block-navigation__responsive-container-open svg,
+.centam-primary-nav .wp-block-navigation__responsive-container-close svg {
+	width: 28px;
+	height: 28px;
+	fill: var(--wp--preset--color--cream);
+}
+
+.centam-primary-nav .wp-block-navigation__responsive-container.is-menu-open {
+	padding-top: 80px;
+	padding-left: var(--centam-gutter);
+	padding-right: var(--centam-gutter);
+}
+
+.centam-primary-nav .wp-block-navigation__responsive-container.is-menu-open .wp-block-navigation-item__content {
+	font-size: 22px;
+	padding: 16px 0;
+}
+
+/* -------------------------------------------------------------
+   6. HERO (Cover style)
+   ------------------------------------------------------------- */
+.wp-block-cover.is-style-centam-hero {
+	min-height: 100vh;
+	background-color: var(--wp--preset--color--dark-green);
+	overflow: hidden;
+	padding-left: 0;
+	padding-right: 0;
+}
+
+/* Brand gradient behind everything (the static site's .img-hero). */
+.wp-block-cover.is-style-centam-hero .wp-block-cover__background {
+	background:
+		linear-gradient(135deg, rgba(31, 58, 61, 0.55), rgba(21, 30, 34, 0.85)),
+		radial-gradient(ellipse at 30% 30%, rgba(58, 111, 107, 0.45), transparent 50%),
+		radial-gradient(ellipse at 70% 70%, rgba(106, 77, 106, 0.3), transparent 60%),
+		var(--wp--preset--color--dark-green) !important;
+	opacity: 1 !important;
+}
+
+/* A background photo, when an editor adds one, shows through the gradient. */
+.wp-block-cover.is-style-centam-hero .wp-block-cover__image-background ~ .wp-block-cover__background {
+	opacity: 0.85 !important;
+}
+
+/* Hex mesh above the gradient, below the text. */
+.wp-block-cover.is-style-centam-hero::before {
+	content: "";
+	position: absolute;
+	inset: 0;
+	background-image: var(--centam-hex-mesh);
+	background-repeat: repeat;
+	background-size: var(--centam-hex-mesh-size);
+	z-index: 2;
+	pointer-events: none;
+}
+
+.wp-block-cover.is-style-centam-hero::after {
+	content: "";
+	position: absolute;
+	inset: 0;
+	background-color: rgba(21, 30, 34, 0.45);
+	z-index: 2;
+	pointer-events: none;
+}
+
+.wp-block-cover.is-style-centam-hero .wp-block-cover__inner-container {
+	z-index: 3;
+	max-width: 900px;
+	padding-left: 20px;
+	padding-right: 20px;
+	color: var(--wp--preset--color--cream);
+}
+
+/* Hero text is left-aligned inside its centred 900px column. */
+.wp-block-cover.is-style-centam-hero .wp-block-cover__inner-container > * {
+	margin-left: 0 !important;
+}
+
+.wp-block-cover.is-style-centam-hero h1 {
+	color: var(--wp--preset--color--cream);
+	margin-bottom: 0.4em;
+}
+
+.wp-block-cover.is-style-centam-hero p:not(.is-style-centam-eyebrow) {
+	font-size: clamp(16px, 1.6vw, 20px);
+	max-width: 700px;
+	margin-bottom: 2.5em;
+}
+
+.wp-block-cover.is-style-centam-hero .wp-block-buttons {
+	gap: 16px;
+}
+
+@media (max-width: 768px) {
+	.wp-block-cover.is-style-centam-hero {
+		min-height: 88vh;
+	}
+
+	.wp-block-cover.is-style-centam-hero p:not(.is-style-centam-eyebrow) {
+		font-size: 16px;
+		margin-bottom: 1.8em;
+	}
+}
+
+/* -------------------------------------------------------------
+   7. BUTTONS
+   Base look is in theme.json (elements.button). "Outline" is the
+   ghost CTA: mint outline, one size smaller.
+   ------------------------------------------------------------- */
+.wp-element-button {
+	transition:
+		background-color var(--wp--custom--transition--fast),
+		border-color var(--wp--custom--transition--fast);
+}
+
+.wp-block-button.is-style-outline > .wp-block-button__link {
+	background-color: transparent;
+	color: var(--wp--preset--color--cream);
+	border: 1px solid var(--wp--preset--color--mint);
+	padding: 13px 28px;
+	font-size: 13px;
+}
+
+.wp-block-button.is-style-outline > .wp-block-button__link:hover,
+.wp-block-button.is-style-outline > .wp-block-button__link:focus {
+	background-color: rgba(169, 183, 180, 0.1);
+	border-color: var(--wp--preset--color--cream);
+	color: var(--wp--preset--color--cream);
+}
+
+.is-style-centam-section-light .wp-block-button.is-style-outline > .wp-block-button__link {
+	color: var(--wp--preset--color--near-black);
+	border-color: var(--wp--preset--color--near-black);
+}
+
+/* -------------------------------------------------------------
+   8. CARDS (Group / Column "Card" style, Post Template card grid)
+   ------------------------------------------------------------- */
+.is-style-centam-card {
+	background-color: var(--wp--preset--color--green);
+	border: var(--wp--custom--border--mint);
+	border-radius: var(--wp--custom--radius--card);
+	padding: 36px 32px;
+	color: var(--wp--preset--color--cream);
+	transition:
+		transform var(--wp--custom--transition--medium),
+		border-color var(--wp--custom--transition--fast);
+}
+
+.is-style-centam-card:hover {
+	transform: translateY(-4px);
+	border-color: var(--wp--preset--color--mint);
+}
+
+.is-style-centam-card :where(h3) {
+	color: var(--wp--preset--color--cream);
+	margin: 0 0 0.6em;
+}
+
+.is-style-centam-card p,
+.is-style-centam-card .wp-block-post-excerpt {
+	color: rgba(230, 236, 234, 0.85);
+	font-size: var(--wp--preset--font-size--small);
+}
+
+.is-style-centam-card > * {
+	margin-block-start: 0;
+}
+
+/* On light sections cards turn white */
+.is-style-centam-section-light .is-style-centam-card {
+	background-color: #ffffff;
+	border-color: rgba(21, 30, 34, 0.1);
+}
+
+.is-style-centam-section-light .is-style-centam-card :where(h3) {
+	color: var(--wp--preset--color--near-black);
+}
+
+.is-style-centam-section-light .is-style-centam-card p,
+.is-style-centam-section-light .is-style-centam-card .wp-block-post-excerpt {
+	color: rgba(21, 30, 34, 0.7);
+}
+
+/* Card grid: 3 / 2 / 1 columns at the static site's breakpoints */
+.wp-block-post-template.is-style-centam-card-grid {
+	display: grid;
+	grid-template-columns: repeat(3, minmax(0, 1fr));
+	gap: 24px;
+}
+
+@media (max-width: 992px) {
+	.wp-block-post-template.is-style-centam-card-grid {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+	}
+}
+
+@media (max-width: 600px) {
+	.wp-block-post-template.is-style-centam-card-grid {
+		grid-template-columns: minmax(0, 1fr);
+	}
+}
+
+.wp-block-post-template.is-style-centam-card-grid > li {
+	margin: 0;
+}
+
+.wp-block-post-template.is-style-centam-card-grid .is-style-centam-card {
+	height: 100%;
+}
+
+/* Card image bleeds to the card edges */
+.centam-card__media {
+	margin: -36px -32px 20px;
+	border-radius: var(--wp--custom--radius--card) var(--wp--custom--radius--card) 0 0;
+	overflow: hidden;
+}
+
+.centam-card--project .centam-card__media {
+	min-height: 180px;
+	margin-bottom: 24px;
+}
+
+.centam-card--project .centam-card__media img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	display: block;
+}
+
+.centam-card--news .centam-card__media {
+	min-height: 160px;
+}
+
+.centam-card--news .centam-card__media img {
+	max-width: 100%;
+	width: auto;
+	height: auto;
+	object-fit: contain;
+	display: block;
+}
+
+/* Category tag */
+.centam-card__tag {
+	display: inline-block;
+	font-family: var(--wp--preset--font-family--heading);
+	font-size: 11px;
+	line-height: 1.7;
+	letter-spacing: 0.2em;
+	text-transform: uppercase;
+	color: var(--wp--preset--color--light-green);
+	padding: 4px 10px;
+	border: 1px solid var(--wp--preset--color--light-green);
+	border-radius: 2px;
+	margin-bottom: 16px;
+}
+
+.centam-card__tag a,
+.is-style-centam-section-light .centam-card__tag a {
+	color: inherit;
+	text-decoration: none;
+}
+
+.centam-card__tag .wp-block-post-terms__separator {
+	opacity: 0.6;
+}
+
+/* Card footer: date · Read More → */
+.centam-card__footer {
+	gap: 0.3em;
+	align-items: baseline;
+	font-size: var(--wp--preset--font-size--small);
+}
+
+.centam-card__footer .wp-block-post-date {
+	font-size: var(--wp--preset--font-size--x-small);
+}
+
+.centam-card__footer p {
+	margin: 0;
+}
+
+.wp-block-read-more {
+	color: var(--wp--preset--color--light-green);
+}
+
+.is-style-centam-section-light .wp-block-read-more {
+	color: var(--wp--preset--color--dark-green);
+	text-decoration: underline;
+	text-decoration-thickness: 1px;
+	text-underline-offset: 3px;
+}
+
+/* Whole news card is clickable (assets/js/centam.js) */
+.centam-card--news.is-clickable {
+	cursor: pointer;
+}
+
+/* -------------------------------------------------------------
+   9. IMAGES (Image block styles)
+   ------------------------------------------------------------- */
+
+/* Hexagon photo: clip-path plus the thin mint outline from the static
+   site's inline SVG. */
+.wp-block-image.is-style-centam-hexagon {
+	position: relative;
+	width: 200px;
+	height: 230px;
+	margin: 0 auto 24px;
+	overflow: hidden;
+	clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+	background-color: var(--wp--preset--color--green);
+	transition: transform var(--wp--custom--transition--medium);
+}
+
+.wp-block-image.is-style-centam-hexagon img {
+	position: absolute;
+	inset: 0;
+	width: 100% !important;
+	height: 100% !important;
+	object-fit: cover;
+	display: block;
+	border-radius: 0;
+}
+
+.wp-block-image.is-style-centam-hexagon::after {
+	content: "";
+	position: absolute;
+	inset: 0;
+	z-index: 2;
+	pointer-events: none;
+	background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 230' preserveAspectRatio='none'><path d='M100 0 L200 57.5 L200 172.5 L100 230 L0 172.5 L0 57.5 Z' fill='none' stroke='%23A9B7B4' stroke-width='1.5' stroke-opacity='0.4'/></svg>") no-repeat center / 100% 100%;
+}
+
+.wp-block-image.is-style-centam-hexagon figcaption {
+	display: none;
+}
+
+/* Partner logo: centred, contained, slight lift on hover */
+.wp-block-image.is-style-centam-partner-logo {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	min-height: 120px;
+	padding: 14px 8px;
+	margin: 0;
+}
+
+.wp-block-image.is-style-centam-partner-logo img {
+	width: 100%;
+	max-width: 180px;
+	max-height: 100px;
+	object-fit: contain;
+	display: block;
+	transition: transform var(--wp--custom--transition--fast);
+}
+
+.wp-block-image.is-style-centam-partner-logo:hover img {
+	transform: scale(1.02);
+}
+
+/* -------------------------------------------------------------
+   10. DETAIL PAGES (news article, project)
+   ------------------------------------------------------------- */
+.centam-back-link {
+	margin-block: 0 1.2em;
+}
+
+.centam-detail__category {
+	display: block;
+	font-family: var(--wp--preset--font-family--heading);
+	font-weight: 600;
+	font-size: 14px;
+	letter-spacing: 0.25em;
+	text-transform: uppercase;
+	color: var(--wp--preset--color--light-green);
+	margin-bottom: 1em;
+}
+
+.is-style-centam-section-light .centam-detail__category a {
+	color: inherit;
+	text-decoration: none;
+}
+
+#news-detail .wp-block-post-title,
+#project-detail .wp-block-post-title {
+	margin-block: 0 0.6em;
+}
+
+.centam-detail__date {
+	margin-bottom: 1.2em;
+}
+
+.centam-detail__media {
+	margin: 32px 0 40px;
+	border-radius: var(--wp--custom--radius--card);
+	overflow: hidden;
+}
+
+#news-detail .centam-detail__media img {
+	width: 50%;
+	height: auto;
+	object-fit: contain;
+	display: block;
+	margin: 0 auto;
+}
+
+/* -------------------------------------------------------------
+   11. FORMS (Jetpack form and search)
+   ------------------------------------------------------------- */
+:where(.wp-site-blocks) input[type="text"],
+:where(.wp-site-blocks) input[type="email"],
+:where(.wp-site-blocks) input[type="tel"],
+:where(.wp-site-blocks) input[type="search"],
+:where(.wp-site-blocks) textarea {
+	width: 100%;
+	background-color: rgba(255, 255, 255, 0.03);
+	border: 1px solid rgba(169, 183, 180, 0.3);
+	border-radius: 4px;
+	padding: 14px 16px;
+	font-family: var(--wp--preset--font-family--body);
+	font-size: 16px;
+	color: var(--wp--preset--color--cream);
+	transition:
+		border-color var(--wp--custom--transition--fast),
+		background-color var(--wp--custom--transition--fast);
+}
+
+:where(.wp-site-blocks) input:focus,
+:where(.wp-site-blocks) textarea:focus {
+	outline: none;
+	border-color: var(--wp--preset--color--mint);
+	background-color: rgba(255, 255, 255, 0.06);
+}
+
+:where(.wp-site-blocks) textarea {
+	min-height: 160px;
+	resize: vertical;
+}
+
+:where(.wp-site-blocks) label {
+	font-family: var(--wp--preset--font-family--heading);
+	font-size: 13px;
+	letter-spacing: 0.15em;
+	text-transform: uppercase;
+	color: var(--wp--preset--color--mint);
+	margin-bottom: 8px;
+	display: block;
+}
+
+.is-style-centam-section-light :where(input, textarea) {
+	color: var(--wp--preset--color--near-black);
+	border-color: rgba(21, 30, 34, 0.25);
+}
+
+/* -------------------------------------------------------------
+   12. FOOTER
+   ------------------------------------------------------------- */
+.site-footer {
+	background-color: var(--wp--preset--color--near-black);
+	color: var(--wp--preset--color--mint);
+	padding: 80px var(--centam-gutter) 32px;
+	border-top: 1px solid var(--centam-line);
+	font-size: 14px;
+	margin-block-start: 0;
+}
+
+.centam-footer__inner > * {
+	max-width: 1184px;
+}
+
+.centam-footer__grid {
+	display: grid;
+	grid-template-columns: 2fr 1fr 1fr;
+	gap: 48px;
+	margin: 0;
+}
+
+.centam-footer__grid > .wp-block-column {
+	flex-basis: auto;
+}
+
+@media (max-width: 768px) {
+	.centam-footer__grid {
+		grid-template-columns: 1fr 1fr;
+		gap: 32px;
+	}
+}
+
+@media (max-width: 480px) {
+	.centam-footer__grid {
+		grid-template-columns: 1fr;
+		gap: 28px;
+	}
+}
+
+.centam-footer__logo {
+	margin: 0 0 16px;
+}
+
+.centam-footer__logo img {
+	height: 76px;
+	width: auto;
+	display: block;
+}
+
+.centam-footer__tagline {
+	font-size: 13px;
+	color: var(--wp--preset--color--mint);
+	max-width: 280px;
+	margin: 16px 0 0;
+}
+
+.site-footer h4 {
+	font-size: 13px;
+	letter-spacing: 0.2em;
+	text-transform: uppercase;
+	color: var(--wp--preset--color--cream);
+	margin: 0 0 18px;
+}
+
+.centam-footer__links {
+	gap: 0;
+}
+
+.centam-footer__links p {
+	margin: 0;
+	line-height: 1.7;
+}
+
+.site-footer a {
+	color: var(--wp--preset--color--mint);
+	display: block;
+	padding: 4px 0;
+	font-size: 14px;
+}
+
+.site-footer a:hover {
+	color: var(--wp--preset--color--cream);
+}
+
+.centam-footer__bottom {
+	border-top: 1px solid var(--centam-line);
+	padding-top: 24px;
+	margin: 60px auto 0;
+	font-size: 12px;
+	line-height: 1.7;
+	color: rgba(169, 183, 180, 0.6);
+	text-align: center;
+}
+
+/* -------------------------------------------------------------
+   13. 404
+   ------------------------------------------------------------- */
+.centam-notfound.wp-block-cover {
+	min-height: calc(100vh - var(--centam-nav-height)) !important;
+	justify-content: flex-start;
+}
+
+.centam-notfound .wp-block-cover__inner-container {
+	width: 100%;
+	max-width: 1184px;
+	margin: 0 auto;
+}
+
+.centam-notfound__code {
+	font-family: var(--wp--preset--font-family--heading);
+	font-weight: 700;
+	font-size: clamp(72px, 14vw, 160px) !important;
+	line-height: 1;
+	color: var(--wp--preset--color--light-green);
+	letter-spacing: 2px;
+	margin: 0 0 8px !important;
+}
+
+.centam-notfound .wp-block-buttons {
+	margin-top: 32px;
+}
+
+/* -------------------------------------------------------------
+   14. PAGINATION
+   ------------------------------------------------------------- */
+.wp-block-query-pagination {
+	margin-top: 56px;
+	font-family: var(--wp--preset--font-family--heading);
+	letter-spacing: 0.12em;
+	text-transform: uppercase;
+}
+
+/* -------------------------------------------------------------
+   15. ACCESSIBILITY + PRINT
+   ------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+	*,
+	*::before,
+	*::after {
+		animation-duration: 0.01ms !important;
+		transition-duration: 0.01ms !important;
+	}
+}
+
+@media print {
+	.site-header,
+	.site-footer,
+	.wp-block-cover.is-style-centam-hero::before,
+	.wp-block-cover.is-style-centam-hero::after {
+		display: none;
+	}
+
+	body {
+		background: white;
+		color: black;
+	}
+}
