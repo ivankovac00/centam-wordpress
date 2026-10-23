@@ -5,3 +5,4 @@
 /.github
 /.gitattributes
 /.deployignore
+/centam-deploy.php
