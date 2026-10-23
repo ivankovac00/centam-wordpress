@@ -251,6 +251,8 @@ If WordPress.com has a problem, point the domain back. Email is unaffected as lo
 
 Fallback: zip upload as in step 2 (**Replace current with uploaded**). SFTP also works on the Business plan but is not needed.
 
+**Installer plugin (`centam-deploy.php`).** The repo root is also a small plugin, *CENTAM Deploy*, so the GitHub branch zip (`https://codeload.github.com/ivankovac00/centam-wordpress/zip/refs/heads/<branch>`) can be uploaded as a plugin, by hand or by Claude through the WordPress.com connector. Activating it replaces `wp-content/themes/centam` and `wp-content/plugins/centam-projects` with the copies in the zip, and the first time it also creates the EN/NL Home and News pages from the patterns and sets them as the front page and posts page. Once Polylang has English and Nederlands, activating it again links those pages as translations. It never touches a page it created before, so editors' changes are safe. Deactivate it afterwards. This is how the first deploy to berfugoksel-uvabf.wpcomstaging.com was done on 2026-10-23; `.deployignore` keeps the file out of GitHub Deployments.
+
 Content changes (text, images, posts, projects, team, translations) are made only in the WordPress editor, never in this repo.
 
 **One caveat on Site Editor edits.** When someone edits the header, footer or a template in **Appearance → Editor**, WordPress saves that copy in the database, and it wins over the theme files. A later deploy that changes the same part will not show until that customisation is reset (**Appearance → Editor → Patterns → Template Parts** → the part → ⋮ → **Reset**). Resetting throws away the editor's changes, including its Polylang translations, so redo them afterwards.
